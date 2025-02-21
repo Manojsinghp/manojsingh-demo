@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+  <head>
+    <title>AngularJS Modules & Controllers</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  </head>
+  <body>
+    <div ng-controller="myController">
+      <h1>{{message}}</h1>
+      <p>Enter your name: <input type="text" ng-model="userName"></p>
+      <button ng-click="greetUser()">Greet</button>
+      <h2>{{greetingMessage}}</h2>
+    </div>
+
+    <script>
+      // 1. Define the module
+      var app = angular.module('myApp', []);
+
+      // 2. Define the controller
+      app.controller('myController', function($scope) {
+        $scope.message = "Hello, welcome to AngularJS!";
+        $scope.greetingMessage = "";
+
+        // Controller function to greet the user
+        $scope.greetUser = function() {
+          if ($scope.userName) {
+            $scope.greetingMessage = "Hello, " + $scope.userName + "!";
+          } else {
+            $scope.greetingMessage = "Please enter your name.";
+          }
+        };
+      });
+    </script>
+  </body>
+</html>
